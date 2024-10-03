@@ -5,14 +5,8 @@ declare module 'styled-components' {
     colors: {
       primary: string;
       secondary: string;
-      tertiary: string;
-      quaternary: string;
-      quinary: string;
-      senary: string;
-      septenary: string;
-      octonary: string;
-      nonary: string;
-      denary: string;
+      background: string;
+      text: string;
     };
     fonts: {
       primary: string;

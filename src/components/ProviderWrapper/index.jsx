@@ -16,7 +16,7 @@ const ProviderWrapper = ({ children, userConfigs }) => {
       setTheme('light');
       setLanguage('PT');
     };
-  }, []);
+  }, [userConfigs]);
 
   return (
     <ThemeProvider theme={theme === 'dark' ? dark : light }>

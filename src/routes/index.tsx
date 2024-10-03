@@ -6,14 +6,16 @@ import { Login } from '../pages/Login';
 import { Register } from '../pages/Register';
 
 interface Props {
-	userConfigs: userConfigs
+	userConfigs: userConfigs;
+	toggleTheme: () => void;
+	updateLanguage: (language: string) => void;
 }
 
-const AppRoutes = ({ userConfigs }: Props) => {
+const AppRoutes = ({ userConfigs, toggleTheme, updateLanguage }: Props) => {
 	return (
 		<BrowserRouter>
 			<Routes>
-				<Route path='/' element={<Home userConfigs={userConfigs} />} />
+				<Route path='/' element={<Home userConfigs={userConfigs} toggleTheme={toggleTheme} updateLanguage={updateLanguage} />} />
 				<Route path='/login' element={<Login userConfigs={userConfigs} />} />
 				<Route path='/register' element={<Register userConfigs={userConfigs} />} />
 			</Routes>

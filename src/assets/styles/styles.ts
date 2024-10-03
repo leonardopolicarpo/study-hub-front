@@ -8,12 +8,19 @@ const GlobalStyle = createGlobalStyle`
 		font-weight: 400;
 
 		color-scheme: light dark;
-		background-color: ${(props) => props.theme.colors.primary};
+
+		
 
 		font-synthesis: none;
 		text-rendering: optimizeLegibility;
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
+	}
+
+	* {
+		margin: 0;
+		padding: 0;
+    box-sizing: border-box;
 	}
 
 	a {
@@ -31,6 +38,7 @@ const GlobalStyle = createGlobalStyle`
 		place-items: center;
 		min-width: 320px;
 		min-height: 100vh;
+		background-color: ${props => props.theme.colors.background};
 	}
 
 	h1 {

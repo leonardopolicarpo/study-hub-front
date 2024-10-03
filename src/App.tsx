@@ -1,6 +1,9 @@
 import ProviderWrapper from './components/ProviderWrapper';
 import AppRoutes from './routes';
 import GlobalStyle from './assets/styles/styles';
+import { CssBaseline } from '@mui/material';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useEffect, useState } from 'react';
 
 const getUserConfigs = () => {
   const userConfigs = localStorage.getItem('userConfigs');
@@ -16,15 +19,44 @@ const getUserConfigs = () => {
 };
 
 const App = () => {
-  const userConfigs = getUserConfigs();
+  const [userConfigs, setUserConfigs] = useState(getUserConfigs());
+
+  const toggleTheme = () => {
+    const newTheme = userConfigs.theme === 'light' ? 'dark' : 'light';
+    const updatedConfigs = { ...userConfigs, theme: newTheme };
+    setUserConfigs(updatedConfigs);
+    localStorage.setItem('userConfigs', JSON.stringify(updatedConfigs));
+  };
+
+  const updateLanguage = (language: string) => {
+    const updatedConfigs = { ...userConfigs, language };
+    setUserConfigs(updatedConfigs);
+    localStorage.setItem('userConfigs', JSON.stringify(updatedConfigs));
+  };
+
+  useEffect(() => {
+    const storedConfigs = getUserConfigs();
+    setUserConfigs(storedConfigs);
+  }, []);
+
+  const muiTheme = createTheme({
+    palette: {
+      mode: userConfigs.theme,
+    },
+  });
 
   return (
-    <ProviderWrapper userConfigs={userConfigs}>
-      <GlobalStyle />
-      <AppRoutes
-        userConfigs={userConfigs}
-      />
-    </ProviderWrapper>
+    <ThemeProvider theme={muiTheme}>
+      <ProviderWrapper userConfigs={userConfigs}>
+        <GlobalStyle />
+        <CssBaseline />
+        <AppRoutes
+          userConfigs={userConfigs}
+          toggleTheme={toggleTheme}
+          updateLanguage={updateLanguage}
+        />
+      </ProviderWrapper>
+    </ThemeProvider>
   );
 }
 

@@ -19,7 +19,7 @@ export enum Colors {
 
 	// text colors
 	TEXT = '#212121',
-	TEXT_DARK = '#000000',
+	TEXT_DARK= '#000000',
 	TEXT_LIGHT = '#FFFFFF',
 
 	// status colors
